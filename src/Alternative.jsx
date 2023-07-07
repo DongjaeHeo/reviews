@@ -9,21 +9,20 @@ import {
 const App = () => {
   const [number, setNumber] = useState(0);
   const { name, job, image, text } = people[number];
-  const [index, setIndex] = useState(2);
 
   const nextPerson = () => {
-    if (number < people.length - 1) {
-      setNumber(number + 1);
-    } else {
-      setNumber(0);
-    }
+    setNumber((number) => {
+      const nextNumber = (number + 1) % people.length;
+      console.log(nextNumber);
+      return nextNumber;
+    });
   };
   const prevPerson = () => {
-    if (number > 0) {
-      setNumber(number - 1);
-    } else {
-      setNumber(people.length - 1);
-    }
+    setNumber((number) => {
+      const nextNumber = (number - 1 + people.length) % people.length;
+      console.log(nextNumber);
+      return nextNumber;
+    });
   };
   const randomPerson = () => {
     const randomNuber = Math.floor(Math.random() * people.length);
